@@ -290,6 +290,7 @@ public:
 	void DeathMessage( entvars_t *pevKiller );
 
 	void SetCustomDecalFrames( int nFrames );
+	void SetMaxSpeed(const float speed);
 	int GetCustomDecalFrames( void );
 
 	void CBasePlayer::TabulateAmmo( void );

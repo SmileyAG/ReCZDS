@@ -4388,6 +4388,16 @@ void CBasePlayer :: SetCustomDecalFrames( int nFrames )
 		m_nCustomSprayFrames = -1;
 }
 
+//=========================================================
+// SetMaxSpeed
+// set maximum speed
+//=========================================================
+
+void CBasePlayer::SetMaxSpeed(const float speed)
+{
+	g_engfuncs.pfnSetClientMaxspeed(ENT(pev), speed);
+}
+
 /*
 =============
 GetCustomDecalFrames
