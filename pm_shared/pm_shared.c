@@ -2894,6 +2894,8 @@ void PM_ReduceTimers( void )
 	}
 }
 
+int g_bhopcap = 1;
+
 /*
 =============
 PlayerMove
@@ -3145,6 +3147,12 @@ void PM_PlayerMove ( qboolean server )
 			// If we are on ground, no downward velocity.
 			if ( pmove->onground != -1 )
 			{
+				if (g_bhopcap)
+				{
+					pmove->velocity[0] = 0;
+					pmove->velocity[1] = 0;
+				}
+
 				pmove->velocity[2] = 0;
 			}
 
