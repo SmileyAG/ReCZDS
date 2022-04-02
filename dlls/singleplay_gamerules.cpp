@@ -30,7 +30,9 @@ extern int gmsgDeathMsg;	// client dll messages
 extern int gmsgScoreInfo;
 extern int gmsgMOTD;
 
+extern int gmsgBhopcap;
 extern "C" int g_bhopcap;
+extern cvar_t bhopcap;
 
 //=========================================================
 //=========================================================
@@ -38,7 +40,15 @@ CHalfLifeRules::CHalfLifeRules( void )
 {
 	RefreshSkillData();
 
-	g_bhopcap = 0;
+	// Update the bunnyhop cap
+	int old_bhopcap = g_bhopcap;
+	g_bhopcap = (bhopcap.value != 0.);
+	if (g_bhopcap != old_bhopcap)
+	{
+		MESSAGE_BEGIN( MSG_ALL, gmsgBhopcap, NULL );
+			WRITE_BYTE( g_bhopcap );
+		MESSAGE_END();
+	}
 }
 
 //=========================================================
