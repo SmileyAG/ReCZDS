@@ -3334,6 +3334,11 @@ void CBasePlayer::ImpulseCommands( )
 	int iImpulse = (int)pev->impulse;
 	switch (iImpulse)
 	{
+	case 98:
+	{
+		// CTriggerObjective::DisplayObjective
+		break;
+	}
 	case 99:
 		{
 
@@ -3416,49 +3421,22 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 	switch ( iImpulse )
 	{
 	case 76:
-		{
-			if (!giPrecacheGrunt)
-			{
-				giPrecacheGrunt = 1;
-				ALERT(at_console, "You must now restart to use Grunt-o-matic.\n");
-			}
-			else
-			{
-				UTIL_MakeVectors( Vector( 0, pev->v_angle.y, 0 ) );
-				Create("monster_human_grunt", pev->origin + gpGlobals->v_forward * 128, pev->angles);
-			}
-			break;
-		}
-
+	{
+		UTIL_MakeVectors( Vector( 0, pev->v_angle.y, 0 ) );
+		Create("monster_terrorist_arctic_pistol", pev->origin + gpGlobals->v_forward * 128, pev->angles);
+		break;
+	}
 
 	case 101:
 		gEvilImpulse101 = TRUE;
-		GiveNamedItem( "item_suit" );
-		GiveNamedItem( "item_battery" );
-		GiveNamedItem( "weapon_crowbar" );
-		GiveNamedItem( "weapon_9mmhandgun" );
-		GiveNamedItem( "ammo_9mmclip" );
-		GiveNamedItem( "weapon_shotgun" );
-		GiveNamedItem( "ammo_buckshot" );
-		GiveNamedItem( "weapon_9mmAR" );
-		GiveNamedItem( "ammo_9mmAR" );
-		GiveNamedItem( "ammo_ARgrenades" );
-		GiveNamedItem( "weapon_handgrenade" );
-		GiveNamedItem( "weapon_tripmine" );
-#ifndef OEM_BUILD
-		GiveNamedItem( "weapon_357" );
-		GiveNamedItem( "ammo_357" );
-		GiveNamedItem( "weapon_crossbow" );
-		GiveNamedItem( "ammo_crossbow" );
-		GiveNamedItem( "weapon_egon" );
-		GiveNamedItem( "weapon_gauss" );
-		GiveNamedItem( "ammo_gaussclip" );
-		GiveNamedItem( "weapon_rpg" );
-		GiveNamedItem( "ammo_rpgclip" );
-		GiveNamedItem( "weapon_satchel" );
-		GiveNamedItem( "weapon_snark" );
-		GiveNamedItem( "weapon_hornetgun" );
-#endif
+		GiveNamedItem( "weapon_awp" );
+		GiveNamedItem( "weapon_ak47" );
+		GiveNamedItem( "weapon_deagle" );
+		GiveNamedItem( "weapon_knife" );
+		GiveNamedItem( "weapon_mp5navy" );
+		GiveNamedItem( "weapon_flashbang" );
+		GiveNamedItem( "weapon_hegrenade" );
+		GiveNamedItem( "weapon_smokegrenade" );
 		gEvilImpulse101 = FALSE;
 		break;
 
@@ -3534,6 +3512,43 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 			const char *pTextureName = TRACE_TEXTURE( pWorld, start, end );
 			if ( pTextureName )
 				ALERT( at_console, "Texture: %s\n", pTextureName );
+		}
+		break;
+	case 108:
+		{
+			GiveNamedItem( "ammo_338magnum" );
+			GiveNamedItem( "ammo_762nato" );
+			GiveNamedItem( "ammo_762natobox" );
+			GiveNamedItem( "ammo_556natobox" );
+			GiveNamedItem( "ammo_556nato" );
+			GiveNamedItem( "ammo_buckshot" );
+			GiveNamedItem( "ammo_45acp" );
+			GiveNamedItem( "ammo_57mm" );
+			GiveNamedItem( "ammo_50ae" );
+			GiveNamedItem( "ammo_357sig" );
+			GiveNamedItem( "ammo_9mm" );
+			GiveNamedItem( "ammo_338magnum" );
+			GiveNamedItem( "ammo_762nato" );
+			GiveNamedItem( "ammo_762natobox" );
+			GiveNamedItem( "ammo_556natobox" );
+			GiveNamedItem( "ammo_556nato" );
+			GiveNamedItem( "ammo_buckshot" );
+			GiveNamedItem( "ammo_45acp" );
+			GiveNamedItem( "ammo_57mm" );
+			GiveNamedItem( "ammo_50ae" );
+			GiveNamedItem( "ammo_357sig" );
+			GiveNamedItem( "ammo_9mm" );
+			GiveNamedItem( "ammo_338magnum" );
+			GiveNamedItem( "ammo_762nato" );
+			GiveNamedItem( "ammo_762natobox" );
+			GiveNamedItem( "ammo_556natobox" );
+			GiveNamedItem( "ammo_556nato" );
+			GiveNamedItem( "ammo_buckshot" );
+			GiveNamedItem( "ammo_45acp" );
+			GiveNamedItem( "ammo_57mm" );
+			GiveNamedItem( "ammo_50ae" );
+			GiveNamedItem( "ammo_357sig" );
+			GiveNamedItem( "ammo_9mm" );
 		}
 		break;
 	case	195:// show shortest paths for entire level to nearest node
