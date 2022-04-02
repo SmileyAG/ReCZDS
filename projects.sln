@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32228.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hl", "dlls\hl.vcxproj", "{0A8D3D82-A419-4EAB-8490-099EE55C252D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cz", "dlls\cz.vcxproj", "{0A8D3D82-A419-4EAB-8490-099EE55C252D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cl_dll", "cl_dll\cl_dll.vcxproj", "{91DC6ECD-3CF8-474D-BDED-5670CCCC3220}"
 EndProject
