@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *' # Monthly
+
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - uses: microsoft/setup-msbuild@v1.0.3
+    - name: Build
+      run: msbuild /m /t:Build /p:Configuration=Release projects.sln
+    - name: Prepare artifacts
+      run: |
+        mkdir "./cl_dlls"
+        mv Release/client.dll .\cl_dlls
+        mv Release/cz.dll .\dlls
+    - name: Deploy
+      uses: actions/upload-artifact@v3
+      with:
+        name: ReCZDS
+        path: |
+          cl_dlls/client.dll
+          dlls/cz.dll
