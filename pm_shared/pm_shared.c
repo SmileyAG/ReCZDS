@@ -2430,6 +2430,8 @@ void PM_PreventMegaBunnyJumping( void )
 	VectorScale( pmove->velocity, fraction, pmove->velocity ); //Crop it down!.
 }
 
+int g_jumped = 0;
+
 /*
 =============
 PM_Jump
@@ -2570,6 +2572,7 @@ void PM_Jump (void)
 
 	// Flag that we jumped.
 	pmove->oldbuttons |= IN_JUMP;	// don't jump again until released
+	g_jumped = 1;
 }
 
 /*
@@ -3147,8 +3150,9 @@ void PM_PlayerMove ( qboolean server )
 			// If we are on ground, no downward velocity.
 			if ( pmove->onground != -1 )
 			{
-				if (g_bhopcap)
+				if (g_bhopcap && g_jumped)
 				{
+					g_jumped = 0;
 					pmove->velocity[0] = 0;
 					pmove->velocity[1] = 0;
 				}
