@@ -2854,22 +2854,6 @@ void CBasePlayer::Spawn( void )
 
 void CBasePlayer :: Precache( void )
 {
-	// in the event that the player JUST spawned, and the level node graph
-	// was loaded, fix all of the node graph pointers before the game starts.
-	
-	// !!!BUGBUG - now that we have multiplayer, this needs to be moved!
-	if ( WorldGraph.m_fGraphPresent && !WorldGraph.m_fGraphPointersSet )
-	{
-		if ( !WorldGraph.FSetGraphPointers() )
-		{
-			ALERT ( at_console, "**Graph pointers were not set!\n");
-		}
-		else
-		{
-			ALERT ( at_console, "**Graph Pointers Set!\n" );
-		} 
-	}
-
 	// SOUNDS / MODELS ARE PRECACHED in ClientPrecache() (game specific)
 	// because they need to precache before any clients have connected
 
@@ -4082,6 +4066,18 @@ void CBasePlayer :: UpdateClientData( void )
 	{
 		UpdateStatusBar();
 		m_flNextSBarUpdateTime = gpGlobals->time + 0.2;
+	}
+
+	if ( WorldGraph.m_fGraphPresent && !WorldGraph.m_fGraphPointersSet )
+	{
+		if ( !WorldGraph.FSetGraphPointers() )
+		{
+			ALERT ( at_console, "**Graph pointers were not set!\n");
+		}
+		else
+		{
+			ALERT ( at_console, "**Graph Pointers Set!\n" );
+		} 
 	}
 }
 
