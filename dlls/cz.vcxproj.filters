@@ -18,12 +18,6 @@
     <ClCompile Include="aflock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="agrunt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="airtank.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="animating.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,18 +25,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="apache.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="barnacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="barney.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bigmomma.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bloater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bmodels.cpp">
@@ -61,9 +43,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="combat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="crossbow.cpp">
@@ -102,9 +81,6 @@
     <ClCompile Include="gamerules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gargantua.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gauss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -115,9 +91,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="globals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="h_ai.cpp">
@@ -138,16 +111,7 @@
     <ClCompile Include="handgrenade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hassassin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="headcrab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="healthkit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hgrunt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="wpn_shared\hl_wpn_glock.cpp">
@@ -159,19 +123,7 @@
     <ClCompile Include="hornetgun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="houndeye.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ichthyosaur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="islave.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="items.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="leech.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lights.cpp">
@@ -198,13 +150,7 @@
     <ClCompile Include="multiplay_gamerules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nihilanth.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="nodes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="osprey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pathcorner.cpp">
@@ -288,9 +234,6 @@
     <ClCompile Include="tempmonster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tentacle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="triggers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -310,12 +253,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="world.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="xen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zombie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
