@@ -30,9 +30,6 @@
     <ClCompile Include="bmodels.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bullsquid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="buttons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
