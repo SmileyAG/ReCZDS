@@ -67,6 +67,51 @@ CSatchel g_Satchel;
 CTripmine g_Tripmine;
 CSqueak g_Snark;
 
+// CZDS Weapon placeholder entities
+/*
+CUSP g_USP;
+CELITE g_ELITE;
+CUMP45 g_UMP45;
+CFiveSeven g_FIVESEVEN;
+CMP5N g_MP5N;
+CSG552 g_SG552;
+CAK47 g_AK47;
+CLaws g_Laws;
+CAUG g_AUG;
+CAWP g_AWP;
+CC4 g_C4;
+CRadioControlledBomb g_RadioControlledBomb;
+CDEAGLE g_DEAGLE;
+CFlashbang g_Flashbang;
+CSmokeGrenade g_SmokeGrenade;
+CG3SG1 g_G3SG1;
+CSG550 g_SG550;
+CGLOCK18 g_GLOCK18;
+CHEGrenade g_HEGrenade;
+CMedkit g_Medkit;
+CSyringe g_Syringe;
+CHolster g_Holster;
+CCamera g_Camera;
+CBriefcase g_Briefcase;
+CRadio g_Radio;
+CFiberOpticCamera g_FiberOpticCamera;
+CBlowtorch g_Blowtorch;
+CKnife g_Knife;
+CM249 g_M249;
+CM60 g_M60;
+CM3 g_M3;
+CM4A1 g_M4A1;
+CMAC10 g_MAC10;
+CP228 g_P228;
+CP90 g_P90;
+CSCOUT g_SCOUT;
+CTMP g_TMP;
+CXM1014 g_XM1014;
+CGalil g_Galil;
+CFamas g_Famas;
+CShieldGun g_ShieldGun;
+CZipline g_Zipline;
+*/
 
 /*
 ======================
