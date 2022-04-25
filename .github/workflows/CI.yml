@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
     - uses: actions/checkout@v3
       with:
@@ -19,9 +19,9 @@ jobs:
       run: msbuild /m /t:Build /p:Configuration=Release projects.sln
     - name: Prepare artifacts
       run: |
-        mkdir "./cl_dlls"
-        mv Release/client.dll .\cl_dlls
-        mv Release/cz.dll .\dlls
+        mkdir cl_dlls
+        mv Release/client.dll cl_dlls
+        mv Release/cz.dll dlls
     - name: Deploy
       uses: actions/upload-artifact@v3
       with:

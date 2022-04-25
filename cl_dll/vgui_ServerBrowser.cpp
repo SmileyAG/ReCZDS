@@ -1,16 +1,16 @@
 //========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
 //
-// Purpose: 
+// Purpose:
 //
 // $NoKeywords: $
 //=============================================================================
 
-#include<VGUI_HeaderPanel.h>
-#include<VGUI_TablePanel.h>
-#include<VGUI_LineBorder.h>
-#include<VGUI_Label.h>
-#include<VGUI_Button.h>
-#include<VGUI_ActionSignal.h>
+#include <VGUI_HeaderPanel.h>
+#include <VGUI_TablePanel.h>
+#include <VGUI_LineBorder.h>
+#include <VGUI_Label.h>
+#include <VGUI_Button.h>
+#include <VGUI_ActionSignal.h>
 
 #include "hud.h"
 #include "cl_util.h"
@@ -29,120 +29,120 @@ namespace
 
 #define NUM_COLUMNS 5
 
-#define HEADER_SIZE_Y			YRES(18)
+#define HEADER_SIZE_Y YRES(18)
 
 // Column sizes
-#define CSIZE_ADDRESS			XRES(200)
-#define CSIZE_SERVER			XRES(400) 
-#define CSIZE_MAP				XRES(500)
-#define CSIZE_CURRENT			XRES(570)
-#define CSIZE_PING				XRES(640)
+#define CSIZE_ADDRESS XRES(200)
+#define CSIZE_SERVER XRES(400)
+#define CSIZE_MAP XRES(500)
+#define CSIZE_CURRENT XRES(570)
+#define CSIZE_PING XRES(640)
 
-#define CELL_HEIGHT				YRES(15)
+#define CELL_HEIGHT YRES(15)
 
 class ServerBrowserTablePanel;
 
-class CBrowser_InputSignal : public InputSignal
+class CBrowser_InputSignal: public InputSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
+
 public:
-	CBrowser_InputSignal( ServerBrowserTablePanel *pBrowser )
+	CBrowser_InputSignal(ServerBrowserTablePanel* pBrowser)
 	{
 		m_pBrowser = pBrowser;
 	}
 
-	virtual void cursorMoved(int x,int y,Panel* panel) {};
+	virtual void cursorMoved(int x, int y, Panel* panel){};
 	virtual void cursorEntered(Panel* panel){};
-	virtual void cursorExited(Panel* Panel) {};
+	virtual void cursorExited(Panel* Panel){};
 
-	virtual void mousePressed(MouseCode code,Panel* panel);
+	virtual void mousePressed(MouseCode code, Panel* panel);
 
-	virtual void mouseDoublePressed(MouseCode code,Panel* panel);
-	virtual void mouseReleased(MouseCode code,Panel* panel) {};
-	virtual void mouseWheeled(int delta,Panel* panel) {};
-	virtual void keyPressed(KeyCode code,Panel* panel) {};
-	virtual void keyTyped(KeyCode code,Panel* panel) {};
-	virtual void keyReleased(KeyCode code,Panel* panel) {};
-	virtual void keyFocusTicked(Panel* panel) {};
+	virtual void mouseDoublePressed(MouseCode code, Panel* panel);
+	virtual void mouseReleased(MouseCode code, Panel* panel){};
+	virtual void mouseWheeled(int delta, Panel* panel){};
+	virtual void keyPressed(KeyCode code, Panel* panel){};
+	virtual void keyTyped(KeyCode code, Panel* panel){};
+	virtual void keyReleased(KeyCode code, Panel* panel){};
+	virtual void keyFocusTicked(Panel* panel){};
 };
 
-class ServerBrowserTablePanel : public TablePanel
+class ServerBrowserTablePanel: public TablePanel
 {
 private:
-	Label				*m_pLabel;
-	int					m_nMouseOverRow;
+	Label* m_pLabel;
+	int m_nMouseOverRow;
 
 public:
-	
-	ServerBrowserTablePanel( int x,int y,int wide,int tall,int columnCount) : TablePanel( x,y,wide,tall,columnCount)
+	ServerBrowserTablePanel(int x, int y, int wide, int tall, int columnCount): TablePanel(x, y, wide, tall, columnCount)
 	{
-		m_pLabel = new Label( "", 0, 0 /*,wide, tall*/ );
-		
+		m_pLabel = new Label("", 0, 0 /*,wide, tall*/);
+
 		m_nMouseOverRow = 0;
 	}
 
 public:
-	void setMouseOverRow( int row )
+	void setMouseOverRow(int row)
 	{
-		m_nMouseOverRow	= row;
+		m_nMouseOverRow = row;
 	}
 
-	void DoSort( char *sortkey )
+	void DoSort(char* sortkey)
 	{
 		// Request server list and refresh servers...
-		SortServers( sortkey );
+		SortServers(sortkey);
 	}
 
-	void DoRefresh( void )
+	void DoRefresh(void)
 	{
 		// Request server list and refresh servers...
 		ServersList();
-		BroadcastServersList( 0 );
-	}
-	
-	void DoBroadcastRefresh( void )
-	{
-		// Request server list and refresh servers...
-		BroadcastServersList( 1 );
+		BroadcastServersList(0);
 	}
 
-	void DoStop( void )
+	void DoBroadcastRefresh(void)
+	{
+		// Request server list and refresh servers...
+		BroadcastServersList(1);
+	}
+
+	void DoStop(void)
 	{
 		// Stop requesting
 		ServersCancel();
 	}
 
-	void DoCancel( void )
+	void DoCancel(void)
 	{
-		ClientCmd( "togglebrowser\n" );
+		ClientCmd("togglebrowser\n");
 	}
 
-	void DoConnect( void )
+	void DoConnect(void)
 	{
-		const char *info;
-		const char *address;
-		char sz[ 256 ];
+		const char* info;
+		const char* address;
+		char sz[256];
 
-		info = ServersGetInfo( m_nMouseOverRow );
-		if ( !info )
+		info = ServersGetInfo(m_nMouseOverRow);
+		if (!info)
 			return;
 
-		address = gEngfuncs.pNetAPI->ValueForKey( info, "address" );
-		//gEngfuncs.Con_Printf( "Connecting to %s\n", address );
+		address = gEngfuncs.pNetAPI->ValueForKey(info, "address");
+		// gEngfuncs.Con_Printf( "Connecting to %s\n", address );
 
-		sprintf( sz, "connect %s\n", address );
+		sprintf(sz, "connect %s\n", address);
 
-		ClientCmd( sz );
+		ClientCmd(sz);
 
 		DoCancel();
 	}
 
-	void DoPing( void )
+	void DoPing(void)
 	{
-		ServerPing( 0 );
-		ServerRules( 0 );
-		ServerPlayers( 0 );
+		ServerPing(0);
+		ServerRules(0);
+		ServerPlayers(0);
 	}
 
 	virtual int getRowCount()
@@ -150,11 +150,11 @@ public:
 		int rowcount;
 		int height, width;
 
-		getSize( width, height );
+		getSize(width, height);
 
 		// Space for buttons
 		height -= YRES(20);
-		height = max( 0, height );
+		height = max(0, height);
 
 		rowcount = height / CELL_HEIGHT;
 
@@ -165,81 +165,81 @@ public:
 	{
 		return CELL_HEIGHT - 2;
 	}
-	
-	virtual Panel* getCellRenderer(int column,int row,bool columnSelected,bool rowSelected,bool cellSelected)
+
+	virtual Panel* getCellRenderer(int column, int row, bool columnSelected, bool rowSelected, bool cellSelected)
 	{
-		const char *info;
+		const char* info;
 		const char *val, *val2;
-		char sz[ 32 ];
+		char sz[32];
 
-		info = ServersGetInfo( row );
+		info = ServersGetInfo(row);
 
-		if ( row == m_nMouseOverRow )
+		if (row == m_nMouseOverRow)
 		{
-			m_pLabel->setFgColor( 200, 240, 63, 100 );
+			m_pLabel->setFgColor(200, 240, 63, 100);
 		}
 		else
 		{
-			m_pLabel->setFgColor( 255, 255, 255, 0 );
+			m_pLabel->setFgColor(255, 255, 255, 0);
 		}
-		m_pLabel->setBgColor( 0, 0, 0, 200 );
-		m_pLabel->setContentAlignment( vgui::Label::a_west );
-		m_pLabel->setFont( Scheme::sf_primary2 );
+		m_pLabel->setBgColor(0, 0, 0, 200);
+		m_pLabel->setContentAlignment(vgui::Label::a_west);
+		m_pLabel->setFont(Scheme::sf_primary2);
 
-		if ( info )
+		if (info)
 		{
 			// Fill out with the correct data
-			switch ( column )
+			switch (column)
 			{
 			case 0:
-				val = gEngfuncs.pNetAPI->ValueForKey( info, "address" );
-				if ( val )
+				val = gEngfuncs.pNetAPI->ValueForKey(info, "address");
+				if (val)
 				{
-					strncpy( sz, val, 31 );
-					sz[ 31 ] = '\0';
+					strncpy(sz, val, 31);
+					sz[31] = '\0';
 					// Server Name;
-					m_pLabel->setText( sz );
+					m_pLabel->setText(sz);
 				}
 				break;
 			case 1:
-				val = gEngfuncs.pNetAPI->ValueForKey( info, "hostname" );
-				if ( val )
+				val = gEngfuncs.pNetAPI->ValueForKey(info, "hostname");
+				if (val)
 				{
-					strncpy( sz, val, 31 );
-					sz[ 31 ] = '\0';
+					strncpy(sz, val, 31);
+					sz[31] = '\0';
 					// Server Map;
-					m_pLabel->setText( sz );
+					m_pLabel->setText(sz);
 				}
 				break;
 			case 2:
-				val = gEngfuncs.pNetAPI->ValueForKey( info, "map" );
-				if ( val )
+				val = gEngfuncs.pNetAPI->ValueForKey(info, "map");
+				if (val)
 				{
-					strncpy( sz, val, 31 );
-					sz[ 31 ] = '\0';
+					strncpy(sz, val, 31);
+					sz[31] = '\0';
 					// Server Name;
-					m_pLabel->setText( sz );
+					m_pLabel->setText(sz);
 				}
 				break;
 			case 3:
-				val = gEngfuncs.pNetAPI->ValueForKey( info, "current" );
-				val2 = gEngfuncs.pNetAPI->ValueForKey( info, "max" );
-				if ( val && val2 )
+				val = gEngfuncs.pNetAPI->ValueForKey(info, "current");
+				val2 = gEngfuncs.pNetAPI->ValueForKey(info, "max");
+				if (val && val2)
 				{
-					sprintf( sz, "%s/%s", val, val2 );
-					sz[ 31 ] = '\0';
+					sprintf(sz, "%s/%s", val, val2);
+					sz[31] = '\0';
 					// Server Map;
-					m_pLabel->setText( sz );
+					m_pLabel->setText(sz);
 				}
 				break;
 			case 4:
-				val = gEngfuncs.pNetAPI->ValueForKey( info, "ping" );
-				if ( val )
+				val = gEngfuncs.pNetAPI->ValueForKey(info, "ping");
+				if (val)
 				{
-					strncpy( sz, val, 31 );
-					sz[ 31 ] = '\0';
+					strncpy(sz, val, 31);
+					sz[31] = '\0';
 					// Server Name;
-					m_pLabel->setText( sz );
+					m_pLabel->setText(sz);
 				}
 				break;
 			default:
@@ -248,202 +248,201 @@ public:
 		}
 		else
 		{
-			if ( !row && !column )
+			if (!row && !column)
 			{
-				if ( ServersIsQuerying() )
+				if (ServersIsQuerying())
 				{
-					m_pLabel->setText( "Waiting for servers to respond..." );
+					m_pLabel->setText("Waiting for servers to respond...");
 				}
 				else
 				{
-					m_pLabel->setText( "Press 'Refresh' to search for servers..." );
+					m_pLabel->setText("Press 'Refresh' to search for servers...");
 				}
 			}
 			else
 			{
-				m_pLabel->setText( "" );
+				m_pLabel->setText("");
 			}
 		}
-		
+
 		return m_pLabel;
 	}
 
-	virtual Panel* startCellEditing(int column,int row)
+	virtual Panel* startCellEditing(int column, int row)
 	{
 		return null;
 	}
-
 };
 
-class ConnectHandler : public ActionSignal
+class ConnectHandler: public ActionSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	ConnectHandler( ServerBrowserTablePanel *browser )
+	ConnectHandler(ServerBrowserTablePanel* browser)
 	{
-		m_pBrowser = browser;	
+		m_pBrowser = browser;
 	}
 
-	virtual void actionPerformed( Panel *panel )
+	virtual void actionPerformed(Panel* panel)
 	{
 		m_pBrowser->DoConnect();
 	}
 };
 
-class RefreshHandler : public ActionSignal
+class RefreshHandler: public ActionSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	RefreshHandler( ServerBrowserTablePanel *browser )
+	RefreshHandler(ServerBrowserTablePanel* browser)
 	{
-		m_pBrowser = browser;	
+		m_pBrowser = browser;
 	}
 
-	virtual void actionPerformed( Panel *panel )
+	virtual void actionPerformed(Panel* panel)
 	{
 		m_pBrowser->DoRefresh();
 	}
 };
 
-class BroadcastRefreshHandler : public ActionSignal
+class BroadcastRefreshHandler: public ActionSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	BroadcastRefreshHandler( ServerBrowserTablePanel *browser )
+	BroadcastRefreshHandler(ServerBrowserTablePanel* browser)
 	{
-		m_pBrowser = browser;	
+		m_pBrowser = browser;
 	}
 
-	virtual void actionPerformed( Panel *panel )
+	virtual void actionPerformed(Panel* panel)
 	{
 		m_pBrowser->DoBroadcastRefresh();
 	}
 };
 
-class StopHandler : public ActionSignal
+class StopHandler: public ActionSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	StopHandler( ServerBrowserTablePanel *browser )
+	StopHandler(ServerBrowserTablePanel* browser)
 	{
-		m_pBrowser = browser;	
+		m_pBrowser = browser;
 	}
 
-	virtual void actionPerformed( Panel *panel )
+	virtual void actionPerformed(Panel* panel)
 	{
 		m_pBrowser->DoStop();
 	}
 };
 
-class CancelHandler : public ActionSignal
+class CancelHandler: public ActionSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	CancelHandler( ServerBrowserTablePanel *browser )
+	CancelHandler(ServerBrowserTablePanel* browser)
 	{
-		m_pBrowser = browser;	
+		m_pBrowser = browser;
 	}
 
-	virtual void actionPerformed( Panel *panel )
+	virtual void actionPerformed(Panel* panel)
 	{
 		m_pBrowser->DoCancel();
 	}
 };
 
-class PingHandler : public ActionSignal
+class PingHandler: public ActionSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	PingHandler( ServerBrowserTablePanel *browser )
+	PingHandler(ServerBrowserTablePanel* browser)
 	{
-		m_pBrowser = browser;	
+		m_pBrowser = browser;
 	}
 
-	virtual void actionPerformed( Panel *panel )
+	virtual void actionPerformed(Panel* panel)
 	{
 		m_pBrowser->DoPing();
 	}
 };
 
-class SortHandler : public ActionSignal
+class SortHandler: public ActionSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	SortHandler( ServerBrowserTablePanel *browser )
+	SortHandler(ServerBrowserTablePanel* browser)
 	{
-		m_pBrowser = browser;	
+		m_pBrowser = browser;
 	}
 
-	virtual void actionPerformed( Panel *panel )
+	virtual void actionPerformed(Panel* panel)
 	{
-		m_pBrowser->DoSort( "map" );
+		m_pBrowser->DoSort("map");
 	}
 };
 
 }
 
-class LabelSortInputHandler : public InputSignal
+class LabelSortInputHandler: public InputSignal
 {
 private:
-	ServerBrowserTablePanel *m_pBrowser;
-	char m_szSortKey[ 64 ];
+	ServerBrowserTablePanel* m_pBrowser;
+	char m_szSortKey[64];
 
 public:
-	LabelSortInputHandler( ServerBrowserTablePanel *pBrowser, char *name )
+	LabelSortInputHandler(ServerBrowserTablePanel* pBrowser, char* name)
 	{
 		m_pBrowser = pBrowser;
-		strcpy( m_szSortKey, name );
+		strcpy(m_szSortKey, name);
 	}
 
-	virtual void cursorMoved(int x,int y,Panel* panel) {};
+	virtual void cursorMoved(int x, int y, Panel* panel){};
 	virtual void cursorEntered(Panel* panel){};
-	virtual void cursorExited(Panel* Panel) {};
+	virtual void cursorExited(Panel* Panel){};
 
-	virtual void mousePressed(MouseCode code,Panel* panel)
+	virtual void mousePressed(MouseCode code, Panel* panel)
 	{
-		m_pBrowser->DoSort( m_szSortKey );
+		m_pBrowser->DoSort(m_szSortKey);
 	}
 
-	virtual void mouseDoublePressed(MouseCode code,Panel* panel)
+	virtual void mouseDoublePressed(MouseCode code, Panel* panel)
 	{
-		m_pBrowser->DoSort( m_szSortKey );
+		m_pBrowser->DoSort(m_szSortKey);
 	}
 
-	virtual void mouseReleased(MouseCode code,Panel* panel) {};
-	virtual void mouseWheeled(int delta,Panel* panel) {};
-	virtual void keyPressed(KeyCode code,Panel* panel) {};
-	virtual void keyTyped(KeyCode code,Panel* panel) {};
-	virtual void keyReleased(KeyCode code,Panel* panel) {};
-	virtual void keyFocusTicked(Panel* panel) {};
+	virtual void mouseReleased(MouseCode code, Panel* panel){};
+	virtual void mouseWheeled(int delta, Panel* panel){};
+	virtual void keyPressed(KeyCode code, Panel* panel){};
+	virtual void keyTyped(KeyCode code, Panel* panel){};
+	virtual void keyReleased(KeyCode code, Panel* panel){};
+	virtual void keyFocusTicked(Panel* panel){};
 };
 
-class CSBLabel : public Label
+class CSBLabel: public Label
 {
 
 private:
-	char m_szSortKey[ 64 ];
-	ServerBrowserTablePanel *m_pBrowser;
+	char m_szSortKey[64];
+	ServerBrowserTablePanel* m_pBrowser;
 
 public:
-	CSBLabel( char *name, char *sortkey ) : Label( name )
+	CSBLabel(char* name, char* sortkey): Label(name)
 	{
 		m_pBrowser = NULL;
 
-		strcpy( m_szSortKey, sortkey );
+		strcpy(m_szSortKey, sortkey);
 
 		int label_bg_r = 120,
 			label_bg_g = 75,
@@ -455,62 +454,61 @@ public:
 			label_fg_b = 0,
 			label_fg_a = 0;
 
-		setContentAlignment( vgui::Label::a_west );
-		setFgColor( label_fg_r, label_fg_g, label_fg_b, label_fg_a );
-		setBgColor( label_bg_r, label_bg_g, label_bg_b, label_bg_a );
-		setFont( Scheme::sf_primary2 );
-
+		setContentAlignment(vgui::Label::a_west);
+		setFgColor(label_fg_r, label_fg_g, label_fg_b, label_fg_a);
+		setBgColor(label_bg_r, label_bg_g, label_bg_b, label_bg_a);
+		setFont(Scheme::sf_primary2);
 	}
 
-	void setTable( ServerBrowserTablePanel *browser )
+	void setTable(ServerBrowserTablePanel* browser)
 	{
 		m_pBrowser = browser;
 
-		addInputSignal( new LabelSortInputHandler( (ServerBrowserTablePanel * )m_pBrowser, m_szSortKey ) );
+		addInputSignal(new LabelSortInputHandler((ServerBrowserTablePanel*)m_pBrowser, m_szSortKey));
 	}
 };
 
-ServerBrowser::ServerBrowser(int x,int y,int wide,int tall) : CTransparentPanel( 100, x,y,wide,tall )
+ServerBrowser::ServerBrowser(int x, int y, int wide, int tall): CTransparentPanel(100, x, y, wide, tall)
 {
 	int i;
 
-	_headerPanel = new HeaderPanel(0,0,wide,HEADER_SIZE_Y);
+	_headerPanel = new HeaderPanel(0, 0, wide, HEADER_SIZE_Y);
 	_headerPanel->setParent(this);
-	_headerPanel->setFgColor( 100,100,100, 100 );
-	_headerPanel->setBgColor( 0, 0, 0, 100 );
+	_headerPanel->setFgColor(100, 100, 100, 100);
+	_headerPanel->setBgColor(0, 0, 0, 100);
 
-	CSBLabel *pLabel[5];
-	
-	pLabel[0] = new CSBLabel( "Address", "address" );
-	pLabel[1] = new CSBLabel( "Server", "hostname" );
-	pLabel[2] = new CSBLabel( "Map", "map" );
-	pLabel[3] = new CSBLabel( "Current", "current" );
-	pLabel[4] = new CSBLabel( "Latency", "ping" );
+	CSBLabel* pLabel[5];
 
-	for ( i = 0; i < 5; i++ )
+	pLabel[0] = new CSBLabel("Address", "address");
+	pLabel[1] = new CSBLabel("Server", "hostname");
+	pLabel[2] = new CSBLabel("Map", "map");
+	pLabel[3] = new CSBLabel("Current", "current");
+	pLabel[4] = new CSBLabel("Latency", "ping");
+
+	for (i = 0; i < 5; i++)
 	{
-		_headerPanel->addSectionPanel( pLabel[i] );
+		_headerPanel->addSectionPanel(pLabel[i]);
 	}
 
 	// _headerPanel->setFont( Scheme::sf_primary1 );
 
-	_headerPanel->setSliderPos( 0, CSIZE_ADDRESS );
-	_headerPanel->setSliderPos( 1, CSIZE_SERVER );
-	_headerPanel->setSliderPos( 2, CSIZE_MAP );
-	_headerPanel->setSliderPos( 3, CSIZE_CURRENT );
-	_headerPanel->setSliderPos( 4, CSIZE_PING );
+	_headerPanel->setSliderPos(0, CSIZE_ADDRESS);
+	_headerPanel->setSliderPos(1, CSIZE_SERVER);
+	_headerPanel->setSliderPos(2, CSIZE_MAP);
+	_headerPanel->setSliderPos(3, CSIZE_CURRENT);
+	_headerPanel->setSliderPos(4, CSIZE_PING);
 
-	_tablePanel = new ServerBrowserTablePanel( 0, HEADER_SIZE_Y, wide, tall - HEADER_SIZE_Y, NUM_COLUMNS );
+	_tablePanel = new ServerBrowserTablePanel(0, HEADER_SIZE_Y, wide, tall - HEADER_SIZE_Y, NUM_COLUMNS);
 	_tablePanel->setParent(this);
 	_tablePanel->setHeaderPanel(_headerPanel);
-	_tablePanel->setFgColor( 100,100,100, 100 );
-	_tablePanel->setBgColor( 0, 0, 0, 100 );
+	_tablePanel->setFgColor(100, 100, 100, 100);
+	_tablePanel->setBgColor(0, 0, 0, 100);
 
-	_tablePanel->addInputSignal( new CBrowser_InputSignal( (ServerBrowserTablePanel *)_tablePanel ) );
+	_tablePanel->addInputSignal(new CBrowser_InputSignal((ServerBrowserTablePanel*)_tablePanel));
 
-	for ( i = 0; i < 5; i++ )
+	for (i = 0; i < 5; i++)
 	{
-		pLabel[i]->setTable( (ServerBrowserTablePanel * )_tablePanel );
+		pLabel[i]->setTable((ServerBrowserTablePanel*)_tablePanel);
 	}
 
 	int bw = 80, bh = 15;
@@ -518,15 +516,15 @@ ServerBrowser::ServerBrowser(int x,int y,int wide,int tall) : CTransparentPanel(
 
 	int btnx = 10;
 
-	_connectButton = new CommandButton( "Connect", btnx, by, bw, bh );
-	_connectButton->setParent( this );
-	_connectButton->addActionSignal( new ConnectHandler(  (ServerBrowserTablePanel * )_tablePanel ) );
+	_connectButton = new CommandButton("Connect", btnx, by, bw, bh);
+	_connectButton->setParent(this);
+	_connectButton->addActionSignal(new ConnectHandler((ServerBrowserTablePanel*)_tablePanel));
 
 	btnx += bw;
 
-	_refreshButton = new CommandButton( "Refresh", btnx, by, bw, bh );
-	_refreshButton->setParent( this );
-	_refreshButton->addActionSignal( new RefreshHandler(  (ServerBrowserTablePanel * )_tablePanel ) );
+	_refreshButton = new CommandButton("Refresh", btnx, by, bw, bh);
+	_refreshButton->setParent(this);
+	_refreshButton->addActionSignal(new RefreshHandler((ServerBrowserTablePanel*)_tablePanel));
 
 	/*
 	btnx += bw;
@@ -538,9 +536,9 @@ ServerBrowser::ServerBrowser(int x,int y,int wide,int tall) : CTransparentPanel(
 
 	btnx += bw;
 
-	_stopButton = new CommandButton( "Stop", btnx, by, bw, bh );
-	_stopButton->setParent( this );
-	_stopButton->addActionSignal( new StopHandler(  (ServerBrowserTablePanel * )_tablePanel ) );
+	_stopButton = new CommandButton("Stop", btnx, by, bw, bh);
+	_stopButton->setParent(this);
+	_stopButton->addActionSignal(new StopHandler((ServerBrowserTablePanel*)_tablePanel));
 
 	/*
 	btnx += bw;
@@ -548,7 +546,7 @@ ServerBrowser::ServerBrowser(int x,int y,int wide,int tall) : CTransparentPanel(
 	_pingButton = new CommandButton( "Test", btnx, by, bw, bh );
 	_pingButton->setParent( this );
 	_pingButton->addActionSignal( new PingHandler(  (ServerBrowserTablePanel * )_tablePanel ) );
-	
+
 	btnx += bw;
 
 	_sortButton = new CommandButton( "Sort", btnx, by, bw, bh );
@@ -558,66 +556,65 @@ ServerBrowser::ServerBrowser(int x,int y,int wide,int tall) : CTransparentPanel(
 
 	btnx += bw;
 
-	_cancelButton = new CommandButton( "Close", btnx, by, bw, bh );
-	_cancelButton->setParent( this );
-	_cancelButton->addActionSignal( new CancelHandler(  (ServerBrowserTablePanel * )_tablePanel ) );
+	_cancelButton = new CommandButton("Close", btnx, by, bw, bh);
+	_cancelButton->setParent(this);
+	_cancelButton->addActionSignal(new CancelHandler((ServerBrowserTablePanel*)_tablePanel));
 
 	setPaintBorderEnabled(false);
 	setPaintBackgroundEnabled(false);
 	setPaintEnabled(false);
-
 }
 
-void ServerBrowser::setSize(int wide,int tall)
+void ServerBrowser::setSize(int wide, int tall)
 {
-	Panel::setSize(wide,tall);
+	Panel::setSize(wide, tall);
 
-	_headerPanel->setBounds(0,0,wide,HEADER_SIZE_Y);
-	_tablePanel->setBounds(0,HEADER_SIZE_Y,wide,tall - HEADER_SIZE_Y);
-	
-	_connectButton->setBounds( 5, tall - HEADER_SIZE_Y, 75, 15 );
-	_refreshButton->setBounds( 85, tall - HEADER_SIZE_Y, 75, 15 );
+	_headerPanel->setBounds(0, 0, wide, HEADER_SIZE_Y);
+	_tablePanel->setBounds(0, HEADER_SIZE_Y, wide, tall - HEADER_SIZE_Y);
+
+	_connectButton->setBounds(5, tall - HEADER_SIZE_Y, 75, 15);
+	_refreshButton->setBounds(85, tall - HEADER_SIZE_Y, 75, 15);
 	/*
 	_broadcastRefreshButton->setBounds( 165, tall - HEADER_SIZE_Y, 75, 15 );
 	*/
-	_stopButton->setBounds( 165, tall - HEADER_SIZE_Y, 75, 15 );
+	_stopButton->setBounds(165, tall - HEADER_SIZE_Y, 75, 15);
 	/*
 	_pingButton->setBounds( 325, tall - HEADER_SIZE_Y, 75, 15 );
 	*/
-	_cancelButton->setBounds( 245, tall - HEADER_SIZE_Y, 75, 15 );
+	_cancelButton->setBounds(245, tall - HEADER_SIZE_Y, 75, 15);
 }
 
-void CBrowser_InputSignal::mousePressed(MouseCode code,Panel* panel)
+void CBrowser_InputSignal::mousePressed(MouseCode code, Panel* panel)
 {
 	int x, y;
 	int therow = 2;
 
-	if ( code != MOUSE_LEFT )
+	if (code != MOUSE_LEFT)
 		return;
 
-	panel->getApp()->getCursorPos(x,y);
-	panel->screenToLocal( x, y );
+	panel->getApp()->getCursorPos(x, y);
+	panel->screenToLocal(x, y);
 
 	therow = y / CELL_HEIGHT;
-	
+
 	// Figure out which row it's on
-	m_pBrowser->setMouseOverRow( therow );
+	m_pBrowser->setMouseOverRow(therow);
 }
 
-void CBrowser_InputSignal::mouseDoublePressed(MouseCode code,Panel* panel)
+void CBrowser_InputSignal::mouseDoublePressed(MouseCode code, Panel* panel)
 {
 	int x, y;
 	int therow = 2;
 
-	if ( code != MOUSE_LEFT )
+	if (code != MOUSE_LEFT)
 		return;
 
-	panel->getApp()->getCursorPos(x,y);
-	panel->screenToLocal( x, y );
+	panel->getApp()->getCursorPos(x, y);
+	panel->screenToLocal(x, y);
 
 	therow = y / CELL_HEIGHT;
-	
+
 	// Figure out which row it's on
-	m_pBrowser->setMouseOverRow( therow );
+	m_pBrowser->setMouseOverRow(therow);
 	m_pBrowser->DoConnect();
 }
