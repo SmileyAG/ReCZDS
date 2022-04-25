@@ -247,6 +247,7 @@
     <ClCompile Include="util.cpp" />
     <ClCompile Include="weapons.cpp" />
     <ClCompile Include="world.cpp" />
+    <ClCompile Include="genericitem.cpp" />
     <ClCompile Include="wpn_shared\hl_wpn_glock.cpp" />
   </ItemGroup>
   <ItemGroup>
