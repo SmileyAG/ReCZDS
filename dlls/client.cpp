@@ -50,6 +50,10 @@ extern int gmsgSayText;
 
 extern int g_teamplay;
 
+extern int gmsgBhopcap;
+extern cvar_t bhopcap;
+extern "C" int g_bhopcap;
+
 void LinkUserMessages(void);
 
 /*
@@ -635,6 +639,15 @@ void StartFrame(void)
 
 	gpGlobals->teamplay = teamplay.value;
 	g_ulFrameCount++;
+
+	int old_bhopcap = g_bhopcap;
+	g_bhopcap = (bhopcap.value != 0.);
+	if (g_bhopcap != old_bhopcap)
+	{
+		MESSAGE_BEGIN(MSG_ALL, gmsgBhopcap, NULL);
+		WRITE_BYTE(g_bhopcap);
+		MESSAGE_END();
+	}
 }
 
 

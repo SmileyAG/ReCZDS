@@ -3871,6 +3871,12 @@ void CBasePlayer::UpdateClientData(void)
 			{
 				FireTargets("game_playerjoin", this, this, USE_TOGGLE, 0);
 			}
+		}
+
+		// Send the current bhopcap state.
+		if (!m_bSentBhopcap)
+		{
+			m_bSentBhopcap = true;
 			MESSAGE_BEGIN(MSG_ONE, gmsgBhopcap, NULL, pev);
 			WRITE_BYTE(g_bhopcap);
 			MESSAGE_END();
