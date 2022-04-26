@@ -310,6 +310,11 @@ void W_Precache(void)
 	giAmmoIndex = 0;
 
 	// custom items...
+	UTIL_PrecacheOther("item_suit");
+	UTIL_PrecacheOther("item_battery");
+	UTIL_PrecacheOther("item_antidote");
+	UTIL_PrecacheOther("item_security");
+	UTIL_PrecacheOther("item_longjump");
 
 	// common world objects
 	UTIL_PrecacheOther("weaponbox");
