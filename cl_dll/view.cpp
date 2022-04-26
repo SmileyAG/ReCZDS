@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose:
 //
@@ -1382,21 +1382,33 @@ int V_FindViewModelByWeaponModel(int weaponindex)
 {
 
 	static char* modelmap[][2] = {
-		{"models/p_crossbow.mdl", "models/v_crossbow.mdl"},
-		{"models/p_crowbar.mdl", "models/v_crowbar.mdl"},
-		{"models/p_egon.mdl", "models/v_egon.mdl"},
-		{"models/p_gauss.mdl", "models/v_gauss.mdl"},
-		{"models/p_9mmhandgun.mdl", "models/v_9mmhandgun.mdl"},
-		{"models/p_grenade.mdl", "models/v_grenade.mdl"},
-		{"models/p_hgun.mdl", "models/v_hgun.mdl"},
-		{"models/p_9mmAR.mdl", "models/v_9mmAR.mdl"},
-		{"models/p_357.mdl", "models/v_357.mdl"},
-		{"models/p_rpg.mdl", "models/v_rpg.mdl"},
-		{"models/p_shotgun.mdl", "models/v_shotgun.mdl"},
-		{"models/p_squeak.mdl", "models/v_squeak.mdl"},
-		{"models/p_tripmine.mdl", "models/v_tripmine.mdl"},
-		{"models/p_satchel_radio.mdl", "models/v_satchel_radio.mdl"},
-		{"models/p_satchel.mdl", "models/v_satchel.mdl"},
+		{"models/p_ak47.mdl", "models/v_ak47.mdl"},
+		{"models/p_aug.mdl", "models/v_aug.mdl"},
+		{"models/p_awp.mdl", "models/v_awp.mdl"},
+		{"models/p_c4.mdl", "models/v_c4.mdl"},
+		{"models/p_deagle.mdl", "models/v_deagle.mdl"},
+		{"models/p_elite.mdl", "models/v_elite.mdl"},
+		{"models/p_fiveseven.mdl", "models/v_fiveseven.mdl"},
+		{"models/p_flashbang.mdl", "models/v_g3sg1.mdl"},
+		{"models/p_glock18.mdl", "models/v_glock18.mdl"},
+		{"models/p_hegrenade.mdl", "models/v_hegrenade.mdl"},
+		{"models/p_knife.mdl", "models/v_knife.mdl"},
+		{"models/p_m249.mdl", "models/v_m249.mdl"},
+		{"models/p_m60.mdl", "models/v_m60.mdl"},
+		{"models/p_m3.mdl", "models/v_m3.mdl"},
+		{"models/p_m4a1.mdl", "models/v_m4a1.mdl"},
+		{"models/p_mac10.mdl", "models/v_mac10.mdl"},
+		{"models/p_mp5.mdl", "models/v_mp5.mdl"},
+		{"models/p_p228.mdl", "models/v_p228.mdl"},
+		{"models/p_p90.mdl", "models/v_p90.mdl"},
+		{"models/p_scout.mdl", "models/v_scout.mdl"},
+		{"models/p_sg550.mdl", "models/v_sg550.mdl"},
+		{"models/p_sg552.mdl", "models/v_sg552.mdl"},
+		{"models/p_smokegrenade.mdl", "models/v_smokegrenade.mdl"},
+		{"models/p_tmp.mdl", "models/v_tmp.mdl"},
+		{"models/p_ump45.mdl", "models/v_ump45.mdl"},
+		{"models/p_usp.mdl", "models/v_usp.mdl"},
+		{"models/p_xm1014.mdl", "models/v_xm1014.mdl"},
 		{NULL, NULL}};
 
 	struct model_s* weaponModel = IEngineStudio.GetModelByIndex(weaponindex);

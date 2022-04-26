@@ -312,90 +312,49 @@ void W_Precache(void)
 	// custom items...
 
 	// common world objects
-	UTIL_PrecacheOther("item_suit");
-	UTIL_PrecacheOther("item_battery");
-	UTIL_PrecacheOther("item_antidote");
-	UTIL_PrecacheOther("item_security");
-	UTIL_PrecacheOther("item_longjump");
-
-	// shotgun
-	UTIL_PrecacheOtherWeapon("weapon_shotgun");
-	UTIL_PrecacheOther("ammo_buckshot");
-
-	// crowbar
-	UTIL_PrecacheOtherWeapon("weapon_crowbar");
-
-	// glock
-	UTIL_PrecacheOtherWeapon("weapon_9mmhandgun");
-	UTIL_PrecacheOther("ammo_9mmclip");
-
-	// mp5
-	UTIL_PrecacheOtherWeapon("weapon_9mmAR");
-	UTIL_PrecacheOther("ammo_9mmAR");
-	UTIL_PrecacheOther("ammo_ARgrenades");
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// python
-	UTIL_PrecacheOtherWeapon("weapon_357");
-	UTIL_PrecacheOther("ammo_357");
-#endif
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// gauss
-	UTIL_PrecacheOtherWeapon("weapon_gauss");
-	UTIL_PrecacheOther("ammo_gaussclip");
-#endif
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// rpg
-	UTIL_PrecacheOtherWeapon("weapon_rpg");
-	UTIL_PrecacheOther("ammo_rpgclip");
-#endif
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// crossbow
-	UTIL_PrecacheOtherWeapon("weapon_crossbow");
-	UTIL_PrecacheOther("ammo_crossbow");
-#endif
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// egon
-	UTIL_PrecacheOtherWeapon("weapon_egon");
-#endif
-
-	// tripmine
-	UTIL_PrecacheOtherWeapon("weapon_tripmine");
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// satchel charge
-	UTIL_PrecacheOtherWeapon("weapon_satchel");
-#endif
-
-	// hand grenade
-	UTIL_PrecacheOtherWeapon("weapon_handgrenade");
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// squeak grenade
-	UTIL_PrecacheOtherWeapon("weapon_snark");
-#endif
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	// hornetgun
-	UTIL_PrecacheOtherWeapon("weapon_hornetgun");
-#endif
-
-
-#if !defined(OEM_BUILD) && !defined(HLDEMO_BUILD)
-	if (g_pGameRules->IsDeathmatch())
-	{
-		UTIL_PrecacheOther("weaponbox"); // container for dropped deathmatch weapons
-	}
-#endif
+	UTIL_PrecacheOther("weaponbox");
+	UTIL_PrecacheOtherWeapon("weapon_awp");
+	UTIL_PrecacheOtherWeapon("weapon_g3sg1");
+	UTIL_PrecacheOtherWeapon("weapon_ak47");
+	UTIL_PrecacheOtherWeapon("weapon_scout");
+	UTIL_PrecacheOtherWeapon("weapon_m60");
+	UTIL_PrecacheOtherWeapon("weapon_m249");
+	UTIL_PrecacheOtherWeapon("weapon_m4a1");
+	UTIL_PrecacheOtherWeapon("weapon_sg552");
+	UTIL_PrecacheOtherWeapon("weapon_aug");
+	UTIL_PrecacheOtherWeapon("weapon_sg550");
+	UTIL_PrecacheOtherWeapon("weapon_m3");
+	UTIL_PrecacheOtherWeapon("weapon_xm1014");
+	UTIL_PrecacheOtherWeapon("weapon_usp");
+	UTIL_PrecacheOtherWeapon("weapon_mac10");
+	UTIL_PrecacheOtherWeapon("weapon_ump45");
+	UTIL_PrecacheOtherWeapon("weapon_fiveseven");
+	UTIL_PrecacheOtherWeapon("weapon_p90");
+	UTIL_PrecacheOtherWeapon("weapon_deagle");
+	UTIL_PrecacheOtherWeapon("weapon_p228");
+	UTIL_PrecacheOtherWeapon("weapon_knife");
+	UTIL_PrecacheOtherWeapon("weapon_glock18");
+	UTIL_PrecacheOtherWeapon("weapon_mp5navy");
+	UTIL_PrecacheOtherWeapon("weapon_tmp");
+	UTIL_PrecacheOtherWeapon("weapon_elite");
+	UTIL_PrecacheOtherWeapon("weapon_flashbang");
+	UTIL_PrecacheOtherWeapon("weapon_hegrenade");
+	UTIL_PrecacheOtherWeapon("weapon_smokegrenade");
+	UTIL_PrecacheOtherWeapon("weapon_galil");
+	UTIL_PrecacheOtherWeapon("weapon_famas");
+	UTIL_PrecacheOtherWeapon("weapon_shieldgun");
+	UTIL_PrecacheOtherWeapon("weapon_camera");
+	UTIL_PrecacheOtherWeapon("weapon_blowtorch");
+	UTIL_PrecacheOtherWeapon("weapon_radiocontrolledbomb");
+	UTIL_PrecacheOtherWeapon("weapon_laws");
+	UTIL_PrecacheOtherWeapon("weapon_briefcase");
+	UTIL_PrecacheOtherWeapon("weapon_zipline");
+	UTIL_PrecacheOtherWeapon("weapon_radio");
+	UTIL_PrecacheOtherWeapon("weapon_fiberopticcamera");
 
 	g_sModelIndexFireball = PRECACHE_MODEL("sprites/zerogxplode.spr");	// fireball
 	g_sModelIndexWExplosion = PRECACHE_MODEL("sprites/WXplo1.spr");		// underwater fireball
 	g_sModelIndexSmoke = PRECACHE_MODEL("sprites/steam1.spr");			// smoke
-	g_sModelIndexBubbles = PRECACHE_MODEL("sprites/bubble.spr");		// bubbles
 	g_sModelIndexBloodSpray = PRECACHE_MODEL("sprites/bloodspray.spr"); // initial blood
 	g_sModelIndexBloodDrop = PRECACHE_MODEL("sprites/blood.spr");		// splattered blood
 
@@ -1520,57 +1479,3 @@ void CBasePlayerWeapon::PrintState(void)
 
 	ALERT(at_console, "m_iclip:  %i\n", m_iClip);
 }
-
-
-TYPEDESCRIPTION CRpg::m_SaveData[] =
-	{
-		DEFINE_FIELD(CRpg, m_fSpotActive, FIELD_INTEGER),
-		DEFINE_FIELD(CRpg, m_cActiveRockets, FIELD_INTEGER),
-};
-IMPLEMENT_SAVERESTORE(CRpg, CBasePlayerWeapon);
-
-TYPEDESCRIPTION CRpgRocket::m_SaveData[] =
-	{
-		DEFINE_FIELD(CRpgRocket, m_flIgniteTime, FIELD_TIME),
-		DEFINE_FIELD(CRpgRocket, m_pLauncher, FIELD_CLASSPTR),
-};
-IMPLEMENT_SAVERESTORE(CRpgRocket, CGrenade);
-
-TYPEDESCRIPTION CShotgun::m_SaveData[] =
-	{
-		DEFINE_FIELD(CShotgun, m_flNextReload, FIELD_TIME),
-		DEFINE_FIELD(CShotgun, m_fInSpecialReload, FIELD_INTEGER),
-		DEFINE_FIELD(CShotgun, m_flNextReload, FIELD_TIME),
-		// DEFINE_FIELD( CShotgun, m_iShell, FIELD_INTEGER ),
-		DEFINE_FIELD(CShotgun, m_flPumpTime, FIELD_TIME),
-};
-IMPLEMENT_SAVERESTORE(CShotgun, CBasePlayerWeapon);
-
-TYPEDESCRIPTION CGauss::m_SaveData[] =
-	{
-		DEFINE_FIELD(CGauss, m_fInAttack, FIELD_INTEGER),
-		//	DEFINE_FIELD( CGauss, m_flStartCharge, FIELD_TIME ),
-		//	DEFINE_FIELD( CGauss, m_flPlayAftershock, FIELD_TIME ),
-		//	DEFINE_FIELD( CGauss, m_flNextAmmoBurn, FIELD_TIME ),
-		DEFINE_FIELD(CGauss, m_fPrimaryFire, FIELD_BOOLEAN),
-};
-IMPLEMENT_SAVERESTORE(CGauss, CBasePlayerWeapon);
-
-TYPEDESCRIPTION CEgon::m_SaveData[] =
-	{
-		//	DEFINE_FIELD( CEgon, m_pBeam, FIELD_CLASSPTR ),
-		//	DEFINE_FIELD( CEgon, m_pNoise, FIELD_CLASSPTR ),
-		//	DEFINE_FIELD( CEgon, m_pSprite, FIELD_CLASSPTR ),
-		DEFINE_FIELD(CEgon, m_shootTime, FIELD_TIME),
-		DEFINE_FIELD(CEgon, m_fireState, FIELD_INTEGER),
-		DEFINE_FIELD(CEgon, m_fireMode, FIELD_INTEGER),
-		DEFINE_FIELD(CEgon, m_shakeTime, FIELD_TIME),
-		DEFINE_FIELD(CEgon, m_flAmmoUseTime, FIELD_TIME),
-};
-IMPLEMENT_SAVERESTORE(CEgon, CBasePlayerWeapon);
-
-TYPEDESCRIPTION CSatchel::m_SaveData[] =
-	{
-		DEFINE_FIELD(CSatchel, m_chargeReady, FIELD_INTEGER),
-};
-IMPLEMENT_SAVERESTORE(CSatchel, CBasePlayerWeapon);

@@ -51,22 +51,6 @@ int g_irunninggausspred = 0;
 
 vec3_t previousorigin;
 
-// HLDM Weapon placeholder entities.
-CGlock g_Glock;
-CCrowbar g_Crowbar;
-CPython g_Python;
-CMP5 g_Mp5;
-CCrossbow g_Crossbow;
-CShotgun g_Shotgun;
-CRpg g_Rpg;
-CGauss g_Gauss;
-CEgon g_Egon;
-CHgun g_HGun;
-CHandGrenade g_HandGren;
-CSatchel g_Satchel;
-CTripmine g_Tripmine;
-CSqueak g_Snark;
-
 // CZDS Weapon placeholder entities
 /*
 CUSP g_USP;
@@ -372,8 +356,8 @@ void CBasePlayerWeapon::ItemPostFrame(void)
 	if ((m_fInReload) && (m_pPlayer->m_flNextAttack <= 0.0))
 	{
 #if 0 // FIXME, need ammo on client to make this work right
-	  // complete the reload. 
-		int j = min( iMaxClip() - m_iClip, m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType]);	
+	  // complete the reload.
+		int j = min( iMaxClip() - m_iClip, m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType]);
 
 		// Add them to the clip
 		m_iClip += j;
@@ -666,20 +650,50 @@ void HUD_InitClientWeapons(void)
 	HUD_PrepEntity(&player, NULL);
 
 	// Allocate slot(s) for each weapon that we are going to be predicting
-	HUD_PrepEntity(&g_Glock, &player);
-	HUD_PrepEntity(&g_Crowbar, &player);
-	HUD_PrepEntity(&g_Python, &player);
-	HUD_PrepEntity(&g_Mp5, &player);
-	HUD_PrepEntity(&g_Crossbow, &player);
-	HUD_PrepEntity(&g_Shotgun, &player);
-	HUD_PrepEntity(&g_Rpg, &player);
-	HUD_PrepEntity(&g_Gauss, &player);
-	HUD_PrepEntity(&g_Egon, &player);
-	HUD_PrepEntity(&g_HGun, &player);
-	HUD_PrepEntity(&g_HandGren, &player);
-	HUD_PrepEntity(&g_Satchel, &player);
-	HUD_PrepEntity(&g_Tripmine, &player);
-	HUD_PrepEntity(&g_Snark, &player);
+	/*
+	HUD_PrepEntity(&g_USP, &player);
+	HUD_PrepEntity(&g_ELITE, &player);
+	HUD_PrepEntity(&g_UMP45, &player);
+	HUD_PrepEntity(&g_FIVESEVEN, &player);
+	HUD_PrepEntity(&g_MP5N, &player);
+	HUD_PrepEntity(&g_SG552, &player);
+	HUD_PrepEntity(&g_AK47, &player);
+	HUD_PrepEntity(&g_Laws, &player);
+	HUD_PrepEntity(&g_AUG, &player);
+	HUD_PrepEntity(&g_AWP, &player);
+	HUD_PrepEntity(&g_C4, &player);
+	HUD_PrepEntity(&g_RadioControlledBomb, &player);
+	HUD_PrepEntity(&g_DEAGLE, &player);
+	HUD_PrepEntity(&g_Flashbang, &player);
+	HUD_PrepEntity(&g_SmokeGrenade, &player);
+	HUD_PrepEntity(&g_G3SG1, &player);
+	HUD_PrepEntity(&g_SG550, &player);
+	HUD_PrepEntity(&g_GLOCK18, &player);
+	HUD_PrepEntity(&g_HEGrenade, &player);
+	HUD_PrepEntity(&g_Medkit, &player);
+	HUD_PrepEntity(&g_Syringe, &player);
+	HUD_PrepEntity(&g_Holster, &player);
+	HUD_PrepEntity(&g_Camera, &player);
+	HUD_PrepEntity(&g_Briefcase, &player);
+	HUD_PrepEntity(&g_Radio, &player);
+	HUD_PrepEntity(&g_FiberOpticCamera, &player);
+	HUD_PrepEntity(&g_Blowtorch, &player);
+	HUD_PrepEntity(&g_Knife, &player);
+	HUD_PrepEntity(&g_M249, &player);
+	HUD_PrepEntity(&g_M60, &player);
+	HUD_PrepEntity(&g_M3, &player);
+	HUD_PrepEntity(&g_M4A1, &player);
+	HUD_PrepEntity(&g_MAC10, &player);
+	HUD_PrepEntity(&g_P228, &player);
+	HUD_PrepEntity(&g_P90, &player);
+	HUD_PrepEntity(&g_SCOUT, &player);
+	HUD_PrepEntity(&g_TMP, &player);
+	HUD_PrepEntity(&g_XM1014, &player);
+	HUD_PrepEntity(&g_Galil, &player);
+	HUD_PrepEntity(&g_Famas, &player);
+	HUD_PrepEntity(&g_ShieldGun, &player);
+	HUD_PrepEntity(&g_Zipline, &player);
+	*/
 }
 
 /*
@@ -745,61 +759,175 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	// FIXME, make this a method in each weapon?  where you pass in an entity_state_t *?
 	switch (from->client.m_iId)
 	{
-	case WEAPON_CROWBAR:
-		pWeapon = &g_Crowbar;
+		/*
+		case WEAPON_USP:
+			pWeapon = &g_USP;
 		break;
 
-	case WEAPON_GLOCK:
-		pWeapon = &g_Glock;
+		case WEAPON_ELITE:
+			pWeapon = &g_ELITE;
 		break;
 
-	case WEAPON_PYTHON:
-		pWeapon = &g_Python;
+		case WEAPON_UMP45:
+			pWeapon = &g_UMP45;
 		break;
 
-	case WEAPON_MP5:
-		pWeapon = &g_Mp5;
+		case WEAPON_FIVESEVEN:
+			pWeapon = &g_FIVESEVEN;
 		break;
 
-	case WEAPON_CROSSBOW:
-		pWeapon = &g_Crossbow;
+		case WEAPON_MP5N:
+			pWeapon = &g_MP5N;
 		break;
 
-	case WEAPON_SHOTGUN:
-		pWeapon = &g_Shotgun;
+		case WEAPON_SG552:
+			pWeapon = &g_SG552;
 		break;
 
-	case WEAPON_RPG:
-		pWeapon = &g_Rpg;
+		case WEAPON_AK47:
+			pWeapon = &g_AK47;
 		break;
 
-	case WEAPON_GAUSS:
-		pWeapon = &g_Gauss;
+		case WEAPON_LAWS:
+			pWeapon = &g_Laws;
 		break;
 
-	case WEAPON_EGON:
-		pWeapon = &g_Egon;
+		case WEAPON_AUG:
+			pWeapon = &g_AUG
 		break;
 
-	case WEAPON_HORNETGUN:
-		pWeapon = &g_HGun;
+		case WEAPON_AWP:
+			pWeapon = &g_AWP
 		break;
 
-	case WEAPON_HANDGRENADE:
-		pWeapon = &g_HandGren;
+		case WEAPON_C4:
+			pWeapon = &g_C4
 		break;
 
-	case WEAPON_SATCHEL:
-		pWeapon = &g_Satchel;
+		case WEAPON_RADIOCONTROLLEDBOMB:
+			pWeapon = &g_RadioControlledBomb
 		break;
 
-	case WEAPON_TRIPMINE:
-		pWeapon = &g_Tripmine;
+		case WEAPON_DEAGLE:
+			pWeapon = &g_DEAGLE
 		break;
 
-	case WEAPON_SNARK:
-		pWeapon = &g_Snark;
+		case WEAPON_FLASHBANG:
+			pWeapon = &g_Flashbang
 		break;
+
+		case WEAPON_SMOKEGRENADE:
+			pWeapon = &g_SmokeGrenade
+		break;
+
+		case WEAPON_G3SG1:
+			pWeapon = &g_G3SG1
+		break;
+
+		case WEAPON_SG550:
+			pWeapon = &g_SG550
+		break;
+
+		case WEAPON_GLOCK18:
+			pWeapon = &g_GLOCK18
+		break;
+
+		case WEAPON_HEGRENADE:
+			pWeapon = &g_HEGrenade
+		break;
+
+		case WEAPON_MEDKIT:
+			pWeapon = &g_Medkit
+		break;
+
+		case WEAPON_SYRINGE:
+			pWeapon = &g_Syringe
+		break;
+
+		case WEAPON_HOLSTER:
+			pWeapon = &g_Holster
+		break;
+
+		case WEAPON_CAMERA:
+			pWeapon = &g_Camera
+		break;
+
+		case WEAPON_BRIEFCASE:
+			pWeapon = &g_Briefcase
+		break;
+
+		case WEAPON_RADIO:
+			pWeapon = &g_Radio
+		break;
+
+		case WEAPON_FIBEROPTICCAMERA:
+			pWeapon = &g_FiberOpticCamera
+		break;
+
+		case WEAPON_BLOWTORCH:
+			pWeapon = &g_Blowtorch
+		break;
+
+		case WEAPON_KNIFE:
+			pWeapon = &g_Knife
+		break;
+
+		case WEAPON_M249:
+			pWeapon = &g_M249
+		break;
+
+		case WEAPON_M60:
+			pWeapon = &g_M60
+		break;
+
+		case WEAPON_M3:
+			pWeapon = &g_M3
+		break;
+
+		case WEAPON_M4A1:
+			pWeapon = &g_M4A1
+		break;
+
+		case WEAPON_MAC10:
+			pWeapon = &g_MAC10
+		break;
+
+		case WEAPON_P228:
+			pWeapon = &g_P228
+		break;
+
+		case WEAPON_P90:
+			pWeapon = &g_P90
+		break;
+
+		case WEAPON_SCOUT:
+			pWeapon = &g_SCOUT
+		break;
+
+		case WEAPON_TMP:
+			pWeapon = &g_TMP
+		break;
+
+		case WEAPON_XM1014:
+			pWeapon = &g_XM1014
+		break;
+
+		case WEAPON_GALIL:
+			pWeapon = &g_Galil
+		break;
+
+		case WEAPON_FAMAS:
+			pWeapon = &g_Famas
+		break;
+
+		case WEAPON_SHIELDGUN:
+			pWeapon = &g_ShieldGun
+		break;
+
+		case WEAPON_ZIPLINE:
+			pWeapon = &g_Zipline
+		break;
+		*/
 	}
 
 	// Store pointer to our destination entity_state_t so we can get our origin, etc. from it
@@ -889,26 +1017,26 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	player.m_flAmmoStartCharge = from->client.fuser3;
 
 	// Stores all our ammo info, so the client side weapons can use them.
-	player.ammo_9mm = (int)from->client.vuser1[0];
-	player.ammo_357 = (int)from->client.vuser1[1];
-	player.ammo_argrens = (int)from->client.vuser1[2];
-	player.ammo_bolts = (int)from->client.ammo_nails; // is an int anyways...
-	player.ammo_buckshot = (int)from->client.ammo_shells;
-	player.ammo_uranium = (int)from->client.ammo_cells;
-	player.ammo_hornets = (int)from->client.vuser2[0];
-	player.ammo_rockets = (int)from->client.ammo_rockets;
 
+	/*
+	player.ammo_buckshot = (int)from->client.ammo_shells;
+	player.ammo_9mm = (int)from->client.ammo_nails;
+	player.ammo_556nato = (int)from->client.ammo_cells;
+	player.ammo_556natobox = (int)from->client.ammo_rockets;
+	player.ammo_762nato = (int)from->client.vuser2[0];
+	player.ammo_45acp = (int)from->client.vuser2[1];
+	player.ammo_50ae = (int)from->client.vuser2[2];
+	player.ammo_338mag = (int)from->client.vuser3[0];
+	player.ammo_57mm = (int)from->client.vuser3[1];
+	player.ammo_357sig = (int)from->client.vuser3[2];
+	player.ammo_66mm = (int)from->client.vuser4[1];
+	player.ammo_762natobox = (int)from->client.vuser4[2];
+	*/
 
 	// Point to current weapon object
 	if (from->client.m_iId)
 	{
 		player.m_pActiveItem = g_pWpns[from->client.m_iId];
-	}
-
-	if (player.m_pActiveItem->m_iId == WEAPON_RPG)
-	{
-		((CRpg*)player.m_pActiveItem)->m_fSpotActive = (int)from->client.vuser2[1];
-		((CRpg*)player.m_pActiveItem)->m_cActiveRockets = (int)from->client.vuser2[2];
 	}
 
 	// Don't go firing anything if we have died.
@@ -962,36 +1090,26 @@ void HUD_WeaponsPostThink(local_state_s* from, local_state_s* to, usercmd_t* cmd
 	to->client.fuser3 = player.m_flAmmoStartCharge;
 	to->client.maxspeed = player.pev->maxspeed;
 
-	// HL Weapons
-	to->client.vuser1[0] = player.ammo_9mm;
-	to->client.vuser1[1] = player.ammo_357;
-	to->client.vuser1[2] = player.ammo_argrens;
-
-	to->client.ammo_nails = player.ammo_bolts;
+	// CZDS Weapons
+	/*
 	to->client.ammo_shells = player.ammo_buckshot;
-	to->client.ammo_cells = player.ammo_uranium;
-	to->client.vuser2[0] = player.ammo_hornets;
-	to->client.ammo_rockets = player.ammo_rockets;
-
-	if (player.m_pActiveItem->m_iId == WEAPON_RPG)
-	{
-		from->client.vuser2[1] = ((CRpg*)player.m_pActiveItem)->m_fSpotActive;
-		from->client.vuser2[2] = ((CRpg*)player.m_pActiveItem)->m_cActiveRockets;
-	}
+	to->client.ammo_nails = player.ammo_9mm;
+	to->client.ammo_cells = player.ammo_556nato;
+	to->client.ammo_rockets = player.ammo_556natobox;
+	to->client.vuser2[0] = player.ammo_762nato;
+	to->client.vuser2[1] = player.ammo_45acp;
+	to->client.vuser2[2] = player.ammo_50ae;
+	to->client.vuser3[0] = player.ammo_338mag;
+	to->client.vuser3[1] = player.ammo_57mm;
+	to->client.vuser3[2] = player.ammo_357sig;
+	to->client.vuser4[2] = player.ammo_762natobox;
+	*/
 
 	// Make sure that weapon animation matches what the game .dll is telling us
 	//  over the wire ( fixes some animation glitches )
 	if (g_runfuncs && (HUD_GetWeaponAnim() != to->client.weaponanim))
 	{
 		int body = 2;
-
-		// Pop the model to body 0.
-		if (pWeapon == &g_Tripmine)
-			body = 0;
-
-		// Show laser sight/scope combo
-		if (pWeapon == &g_Python && bIsMultiplayer())
-			body = 1;
 
 		// Force a fixed anim down to viewmodel
 		HUD_SendWeaponAnim(to->client.weaponanim, body, 1);

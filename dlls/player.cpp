@@ -1119,14 +1119,17 @@ all the ammo we have into the ammo vars.
 */
 void CBasePlayer::TabulateAmmo()
 {
-	ammo_9mm = AmmoInventory(GetAmmoIndex("9mm"));
-	ammo_357 = AmmoInventory(GetAmmoIndex("357"));
-	ammo_argrens = AmmoInventory(GetAmmoIndex("ARgrenades"));
-	ammo_bolts = AmmoInventory(GetAmmoIndex("bolts"));
 	ammo_buckshot = AmmoInventory(GetAmmoIndex("buckshot"));
-	ammo_rockets = AmmoInventory(GetAmmoIndex("rockets"));
-	ammo_uranium = AmmoInventory(GetAmmoIndex("uranium"));
-	ammo_hornets = AmmoInventory(GetAmmoIndex("Hornets"));
+	ammo_9mm = AmmoInventory(GetAmmoIndex("9mm"));
+	ammo_556nato = AmmoInventory(GetAmmoIndex("556Nato"));
+	ammo_556natobox = AmmoInventory(GetAmmoIndex("556NatoBox"));
+	ammo_762nato = AmmoInventory(GetAmmoIndex("772Nato"));
+	ammo_762natobox = AmmoInventory(GetAmmoIndex("772NatoBox"));
+	ammo_45acp = AmmoInventory(GetAmmoIndex("45acp"));
+	ammo_50ae = AmmoInventory(GetAmmoIndex("50AE"));
+	ammo_338mag = AmmoInventory(GetAmmoIndex("338Magnum"));
+	ammo_57mm = AmmoInventory(GetAmmoIndex("57mm"));
+	ammo_357sig = AmmoInventory(GetAmmoIndex("357SIG"));
 }
 
 

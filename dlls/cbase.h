@@ -358,25 +358,25 @@ public:
 	virtual BOOL FVisible(const Vector& vecOrigin);
 
 	// We use this variables to store each ammo count.
-	int ammo_9mm;
-	int ammo_357;
-	int ammo_bolts;
 	int ammo_buckshot;
-	int ammo_rockets;
-	int ammo_uranium;
-	int ammo_hornets;
-	int ammo_argrens;
+	int ammo_9mm;
+	int ammo_556nato;
+	int ammo_556natobox;
+	int ammo_762nato;
+	int ammo_762natobox;
+	int ammo_45acp;
+	int ammo_50ae;
+	int ammo_338mag;
+	int ammo_57mm;
+	int ammo_357sig;
+	int ammo_66mm;
+
 	// Special stuff for grenades and satchels.
 	float m_flStartThrow;
 	float m_flReleaseThrow;
 	int m_chargeReady;
 	int m_fInAttack;
 
-	enum EGON_FIRESTATE
-	{
-		FIRE_OFF,
-		FIRE_CHARGE
-	};
 	int m_fireState;
 };
 

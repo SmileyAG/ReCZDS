@@ -19,22 +19,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\dlls\crossbow.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\crowbar.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\egon.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
     <ClCompile Include="ev_hldm.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\gauss.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\handgrenade.cpp">
       <Filter>Source Files\hl</Filter>
     </ClCompile>
     <ClCompile Include="hl\hl_baseentity.cpp">
@@ -49,34 +34,7 @@
     <ClCompile Include="hl\hl_weapons.cpp">
       <Filter>Source Files\hl</Filter>
     </ClCompile>
-    <ClCompile Include="..\dlls\wpn_shared\hl_wpn_glock.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\hornetgun.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
     <ClCompile Include="..\common\interface.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\mp5.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\python.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\rpg.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\satchel.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\shotgun.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\squeakgrenade.cpp">
-      <Filter>Source Files\hl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\dlls\tripmine.cpp">
       <Filter>Source Files\hl</Filter>
     </ClCompile>
     <ClCompile Include="..\game_shared\vgui_scrollbar2.cpp">

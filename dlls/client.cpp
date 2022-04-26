@@ -1549,15 +1549,21 @@ void UpdateClientData(const struct edict_s* ent, int sendweapons, struct clientd
 			cd->m_flNextAttack = pl->m_flNextAttack;
 			cd->fuser2 = pl->m_flNextAmmoBurn;
 			cd->fuser3 = pl->m_flAmmoStartCharge;
-			cd->vuser1.x = pl->ammo_9mm;
-			cd->vuser1.y = pl->ammo_357;
-			cd->vuser1.z = pl->ammo_argrens;
-			cd->ammo_nails = pl->ammo_bolts;
-			cd->ammo_shells = pl->ammo_buckshot;
-			cd->ammo_rockets = pl->ammo_rockets;
-			cd->ammo_cells = pl->ammo_uranium;
-			cd->vuser2.x = pl->ammo_hornets;
 
+			/*
+			cd->ammo_shells = pl->ammo_buckshot;
+			cd->ammo_nails = pl->ammo_9mm;
+			cd->ammo_cells = pl->ammo_556nato;
+			cd->ammo_rockets = pl->ammo_556natobox;
+			cd->vuser2.x = pl->ammo_762nato;
+			cd->vuser2.y = pl->ammo_45acp;
+			cd->vuser2.z = pl->ammo_50ae;
+			cd->vuser3.x = pl->ammo_338mag;
+			cd->vuser3.y = pl->ammo_57mm;
+			cd->vuser3.z = pl->ammo_357sig;
+			cd->vuser4.y = pl->ammo_66mm;
+			cd->vuser4.z = pl->ammo_762natobox;
+			*/
 
 			if (pl->m_pActiveItem)
 			{
@@ -1575,12 +1581,6 @@ void UpdateClientData(const struct edict_s* ent, int sendweapons, struct clientd
 					cd->vuser4.x = gun->m_iPrimaryAmmoType;
 					cd->vuser4.y = pl->m_rgAmmo[gun->m_iPrimaryAmmoType];
 					cd->vuser4.z = pl->m_rgAmmo[gun->m_iSecondaryAmmoType];
-
-					if (pl->m_pActiveItem->m_iId == WEAPON_RPG)
-					{
-						cd->vuser2.y = ((CRpg*)pl->m_pActiveItem)->m_fSpotActive;
-						cd->vuser2.z = ((CRpg*)pl->m_pActiveItem)->m_cActiveRockets;
-					}
 				}
 			}
 		}
