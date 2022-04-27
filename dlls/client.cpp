@@ -395,6 +395,11 @@ void ClientCommand(edict_t* pEntity)
 	else if (FStrEq(pcmd, "fullupdate"))
 	{
 		GetClassPtr((CBasePlayer*)pev)->ForceClientDllUpdate();
+		GetClassPtr((CBasePlayer*)pev)->m_iClientFOV = -1; // this forces clip ammo update on demo record
+		for (int i = 0; i < MAX_AMMO_SLOTS; i++)
+		{
+			GetClassPtr((CBasePlayer*)pev)->m_rgAmmoLast[i] = -1; // same as above, but with carried ammo for all weapons
+		}
 	}
 	else if (FStrEq(pcmd, "give"))
 	{
