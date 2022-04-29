@@ -113,7 +113,7 @@ public:
 
 #define WEAPON_ALLWEAPONS (~(1 << WEAPON_SUIT))
 
-#define WEAPON_SUIT 31 // ?????
+#define WEAPON_SUIT 43
 
 #define MAX_WEAPONS 32
 
